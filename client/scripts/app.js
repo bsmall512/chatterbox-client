@@ -24,12 +24,12 @@ var app = {
   },
 
   fetch: function(){
-    $.ajax({
+   $.ajax({
       url: 'https://api.parse.com/1/classes/chatterbox',
       type: 'GET',
       contentType: 'application/json',
       success: function (data) {
-        console.log(data);
+        app.refresh(data);
       },
       error: function () {
         // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
@@ -44,7 +44,26 @@ var app = {
 
   addMessage: function(message){
     $('#chats').append('<p>' + message + '</p>');
+  },
+
+  // addRoom: function(room){ 
+  //   $('#roomSelect').
+  // },
+
+  refresh: function(myData){
+    var data = myData;
+    var length = data.results.length;
+
+    for (var i = 0; i < length; i++){
+      app.addMessage(data.results[i].text);
+    }
+
   }
 };
+
+$( document ).ready(function() {
+  $('button').on('click', app.fetch)
+});
+
 
 
