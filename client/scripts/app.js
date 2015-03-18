@@ -36,6 +36,14 @@ var app = {
         console.error('chatterbox: Failed to receive message');
       }
     });
+  },
+
+  clearMessages: function(){
+    $('#chats').html('');
+  },
+
+  addMessage: function(message){
+    $('#chats').append('<p>' + message + '</p>');
   }
 };
 
