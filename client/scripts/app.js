@@ -28,6 +28,7 @@ var app = {
       url: 'https://api.parse.com/1/classes/chatterbox',
       type: 'GET',
       contentType: 'application/json',
+      sortby: date,
       success: function (data) {  
         //pass the object of objects to refresh function
         
@@ -56,6 +57,17 @@ var app = {
     for (var i = 0; i < length; i++){
       app.addMessage(data.results[i].text, data.results[i].username);
     }
+  
+  }
+  submit: function(){
+    /*
+    createdAt
+    objectID
+    roomname
+
+    look at bookstrap for the format you are supposed to submit
+    messages in! Brian! 
+    */
 
   }
 };
