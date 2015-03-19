@@ -28,7 +28,8 @@ var app = {
       url: 'https://api.parse.com/1/classes/chatterbox',
       type: 'GET',
       contentType: 'application/json',
-      success: function (data) {
+      success: function (data) {  
+        //pass the object of objects to refresh function
         app.refresh(data);
       },
       error: function () {
@@ -43,7 +44,7 @@ var app = {
   },
 
   addMessage: function(message){
-    $('#chats').append('<p>' + message + '</p>');
+    $('#chats').append('<div class="chat">' + message + '</div>');
   },
 
   // addRoom: function(room){ 
@@ -53,7 +54,7 @@ var app = {
   refresh: function(myData){
     var data = myData;
     var length = data.results.length;
-
+     
     for (var i = 0; i < length; i++){
       app.addMessage(data.results[i].text);
     }
@@ -62,7 +63,7 @@ var app = {
 };
 
 $( document ).ready(function() {
-  $('button').on('click', app.fetch)
+  $('#refresh').on('click', app.fetch)
 });
 
 
