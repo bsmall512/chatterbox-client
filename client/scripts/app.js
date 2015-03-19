@@ -28,7 +28,7 @@ var app = {
       url: 'https://api.parse.com/1/classes/chatterbox',
       type: 'GET',
       contentType: 'application/json',
-      sortby: date,
+      data: 'order=-createdAt',
       success: function (data) {  
         //pass the object of objects to refresh function
         
@@ -59,17 +59,17 @@ var app = {
     }
   
   }
-  submit: function(){
-    /*
-    createdAt
-    objectID
-    roomname
+  // submit: function(){
+    
+  //   createdAt
+  //   objectID
+  //   roomname
 
-    look at bookstrap for the format you are supposed to submit
-    messages in! Brian! 
-    */
+  //   look at bookstrap for the format you are supposed to submit
+  //   messages in! Brian! 
+    
 
-  }
+  // }
 };
 
 $( document ).ready(function() {
