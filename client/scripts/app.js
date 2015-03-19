@@ -30,6 +30,7 @@ var app = {
       contentType: 'application/json',
       success: function (data) {  
         //pass the object of objects to refresh function
+        
         app.refresh(data);
       },
       error: function () {
@@ -43,20 +44,17 @@ var app = {
     $('#chats').html('');
   },
 
-  addMessage: function(message){
-    $('#chats').append('<div class="chat">' + message + '</div>');
+  addMessage: function(message, userName){
+    $('#chats').append('<div class="chat"><p>' + userName + '</p><p>' + message + '</p></div>');
   },
 
-  // addRoom: function(room){ 
-  //   $('#roomSelect').
-  // },
 
   refresh: function(myData){
     var data = myData;
     var length = data.results.length;
      
     for (var i = 0; i < length; i++){
-      app.addMessage(data.results[i].text);
+      app.addMessage(data.results[i].text, data.results[i].username);
     }
 
   }
@@ -64,6 +62,12 @@ var app = {
 
 $( document ).ready(function() {
   $('#refresh').on('click', app.fetch)
+  $('#submit').on('click', function(){
+    //debugger;
+    var msg = $("input[name='msg']").val();
+    var userName = $("input[name='userName']").val();
+    app.addMessage(msg, userName);  
+  })
 });
 
 
