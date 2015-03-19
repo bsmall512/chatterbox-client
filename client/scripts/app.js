@@ -3,7 +3,8 @@
 var app = {
   server: 'https://api.parse.com/1/classes/chatterbox',
   init: function(){
-  
+    setInterval(app.fetch, 3000);
+    $('#submit').on('click', app.submit);
   },
 
   send: function(message){
@@ -31,7 +32,6 @@ var app = {
       data: 'order=-createdAt',
       success: function (data) {  
         //pass the object of objects to refresh function
-        
         app.refresh(data);
       },
       error: function () {
@@ -58,28 +58,28 @@ var app = {
       app.addMessage(data.results[i].text, data.results[i].username);
     }
   
-  }
-  // submit: function(){
-    
+  },
+  //   AUTO GENERATED
   //   createdAt
   //   objectID
   //   roomname
 
   //   look at bookstrap for the format you are supposed to submit
   //   messages in! Brian! 
-    
-
-  // }
+  submit: function(e){
+    e.preventDefault();
+    // build the message 
+    var message = {};
+    message.text = $("input[name='msg']").val();
+    //message.username = newSearch.username;
+    // lookup: how do I get parameters out of a search url query
+    app.send(message);
+    app.addMessage(message.text, message.username)
+  }
 };
 
 $( document ).ready(function() {
-  $('#refresh').on('click', app.fetch)
-  $('#submit').on('click', function(){
-    //debugger;
-    var msg = $("input[name='msg']").val();
-    var userName = $("input[name='userName']").val();
-    app.addMessage(msg, userName);  
-  })
+  app.init();
 });
 
 
