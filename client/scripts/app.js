@@ -179,8 +179,6 @@ $(function(){
     },
     
     handleSubmit: function(e){
-      
- 
       var message = {
         username: app.username,
         text: app.$message.val(),
